@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baja SAE | Dante Martin</title>
+  <meta name="description" content="Dante Martin's work on electrical integration, data acquisition, testing, and team systems for SRJC Baja SAE.">
+  <link rel="stylesheet" href="../../styles.css?v=1.15">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23227c4b%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-weight=%22bold%22 font-size=%2260%22 fill=%22white%22>D</text></svg>">
+
+  <link rel="canonical" href="https://dante-martin.com/projects/baja/">
+  <meta property="og:title" content="Baja SAE | Dante Martin">
+  <meta property="og:description" content="Electrical integration, data acquisition, testing, and team systems for SRJC Baja SAE.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://dante-martin.com/projects/baja/">
+  <meta property="og:image" content="https://dante-martin.com/images/baja-safety-schematic-crop.webp">
+  <meta property="og:image:alt" content="Draft Baja SAE safety schematic">
+  <meta property="og:image:type" content="image/webp">
+  <meta property="og:image:width" content="1600">
+  <meta property="og:image:height" content="887">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://dante-martin.com/images/baja-safety-schematic-crop.webp">
+  <meta name="twitter:image:alt" content="Draft Baja SAE safety schematic">
+  <meta name="twitter:title" content="Baja SAE | Dante Martin">
+  <meta name="twitter:description" content="Electrical integration, data acquisition, testing, and team systems for SRJC Baja SAE.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Baja SAE",
+    "url": "https://dante-martin.com/projects/baja/",
+    "creator": {
+      "@type": "Person",
+      "name": "Dante Martin",
+      "url": "https://dante-martin.com/"
+    },
+    "about": "Electrical integration, data acquisition, testing, and team systems for SRJC Baja SAE"
+  }
+  </script>
+
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "light" || savedTheme === "dark") document.documentElement.setAttribute("data-theme", savedTheme);
+      } catch (storageError) {
+        // The page remains fully usable when storage is unavailable.
+      }
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="layout project-layout">
+    <aside class="sidebar">
+      <img class="headshot" src="../../images/headshot.webp" width="192" height="192" alt="Dante Martin">
+      <a class="site-name" href="../../index.html">Dante Martin</a>
+      <p class="tagline">Computer engineering student | Hardware, measurement, and engineering software.</p>
+      <p class="location">Santa Rosa, California</p>
+      <div class="contact">
+      <!--email_off--><a href="mailto:dante@dante-martin.com"><svg viewBox="0 0 16 16" fill="currentColor" class="inline-icon" aria-hidden="true"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.105l4.708-2.897L1 5.383z"/></svg>Email</a><!--/email_off-->
+      <a href="https://github.com/dante32683" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 16 16" fill="currentColor" class="inline-icon" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>
+      <a href="https://www.linkedin.com/in/dante-z-martin/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 16 16" fill="currentColor" class="inline-icon" aria-hidden="true"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.026 2.4 3.734c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/></svg>LinkedIn&nbsp;<span class="arrow" aria-hidden="true">↗</span></a>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Change color theme" hidden></button>
+      <nav class="nav" aria-label="Project sections">
+        <a href="#electrical">Electrical work</a>
+        <a href="#testing">Bench testing</a>
+        <a href="#team-systems">Team systems</a>
+      </nav>
+      <nav class="nav" aria-label="Project pages">
+        <p class="nav-label">Project pages</p>
+        <a href="./" class="active" aria-current="page">Baja SAE</a>
+      </nav>
+      <div class="project-back"><a href="../../index.html">Back to portfolio</a></div>
+    </aside>
+
+    <main class="content project-content" id="content" tabindex="-1">
+      <header class="project-header">
+        <p class="project-eyebrow">SRJC Baja SAE | Engineering Integration Specialist</p>
+        <h1 class="project-title">Baja SAE</h1>
+        <div class="meta">June 2026 to present</div>
+        <div class="entry-details">
+          <div class="detail-row"><span class="detail-label">My work: </span>Electrical integration and testing, KiCad schematics, Data-logger bench testing, Canvas training workspace, Team website</div>
+          <div class="detail-row"><span class="detail-label">Status: </span>Schematics in progress, first bench checks done, not yet tested on the car</div>
+        </div>
+        <p class="project-lede">SRJC is building its first Baja SAE car for the 2027 competition in Arizona. I'm on the electrical side, working on integration and testing: I draw schematics, bench-test the data logger, and work with the other subteams so the sensors, power, and wiring fit the car they're building.</p>
+        <div class="more"><a href="https://srjcsaeclub.org" target="_blank" rel="noopener noreferrer">Visit SRJC Baja SAE&nbsp;<span class="arrow" aria-hidden="true">↗</span></a></div>
+      </header>
+
+      <section id="electrical">
+        <h2>Electrical work</h2>
+        <article class="entry">
+          <p>I set up the car's electrical schematics as one KiCad project, with an overview sheet linking the power, safety, and data-acquisition sheets. I drew the overview, power, and safety sheets and co-drew the data-acquisition sheet with a teammate. They cover the car's 12 V power, the kill switches, brake light, and reverse warning required by the rules, and four planned speed inputs for the data logger, with the safety circuits kept separate from the logger. In September 2026, I presented the schematics to the electrical team and walked through how to read the symbols and trace each circuit.</p>
+          <div class="project-images-grid">
+            <figure class="project-image-card">
+              <a class="project-image-button" href="../../images/baja-project/safety-schematic.webp" data-preview-src="../../images/baja-project/safety-schematic.webp" data-preview-alt="Full draft safety schematic sheet for the SRJC Baja SAE car, drawn by Dante Martin" data-preview-caption="Safety sheet: two kill switches in parallel to the ignition, both brake switches driving the brake light through a relay, and the reverse light and alarm." aria-label="Enlarge image: draft Baja SAE safety schematic">
+                <img src="../../images/baja-safety-schematic-crop.webp" alt="" width="1600" height="887" loading="lazy" decoding="async">
+              </a>
+              <figcaption class="project-image-caption">Safety sheet: two kill switches in parallel to the ignition, both brake switches driving the brake light through a relay, and the reverse light and alarm. Select to see the full sheet.</figcaption>
+            </figure>
+            <figure class="project-image-card">
+              <a class="project-image-button" href="../../images/baja-project/power-schematic.webp" data-preview-src="../../images/baja-project/power-schematic.webp" data-preview-alt="Full draft power schematic sheet for the SRJC Baja SAE car, drawn by Dante Martin" data-preview-caption="Power sheet: the 12 V battery through a main fuse, split into fused branches for the data logger, brake light, and reverse warning." aria-label="Enlarge image: draft Baja SAE power schematic">
+                <img src="../../images/baja-power-schematic-crop.webp" alt="" width="1600" height="1073" loading="lazy" decoding="async">
+              </a>
+              <figcaption class="project-image-caption">Power sheet: the 12 V battery through a main fuse, split into fused branches for the data logger, brake light, and reverse warning. Select to see the full sheet.</figcaption>
+            </figure>
+            <figure class="project-image-card">
+              <a class="project-image-button" href="../../images/baja-project/daq-sensors.webp" data-preview-src="../../images/baja-project/daq-sensors.webp" data-preview-alt="Draft DAQ schematic detail: four speed sensors wired to the data logger's RPM inputs" data-preview-caption="Part of the shared DAQ sheet: four planned speed sensors wired to the data logger's RPM inputs." aria-label="Enlarge image: part of the draft Baja SAE DAQ schematic">
+                <img src="../../images/baja-daq-schematic-crop.webp" alt="" width="1340" height="975" loading="lazy" decoding="async">
+              </a>
+              <figcaption class="project-image-caption">Part of the shared DAQ sheet: four planned speed sensors wired to the data logger's RPM inputs.</figcaption>
+            </figure>
+          </div>
+        </article>
+      </section>
+
+      <section id="testing">
+        <h2>Bench testing</h2>
+        <article class="entry">
+          <p>In September 2026, I ran the first bench checks on our RaceCapture/Pro MK4 data logger over USB. I updated its firmware, confirmed the live dashboard, checked that the IMU responded to motion, got a GPS fix outside, and spot-checked its analog and digital inputs. I also measured the 5 V reference that will power the speed sensors. On USB power it read about 4.69 V, just under the sensors' 4.75 V minimum, one more reason the sensor tests will run on the car's 12 V supply rather than USB. Nothing has been tested on the car yet.</p>
+          <div class="project-images-grid">
+            <figure class="project-image-card">
+              <a class="project-image-button" href="../../images/baja-project/racecapture-dashboard.webp" data-preview-src="../../images/baja-project/racecapture-dashboard.webp" data-preview-alt="RaceCapture desktop dashboard connected to the MK4 data logger over USB, showing firmware 2.24.0 and live readings" data-preview-caption="The RaceCapture/Pro MK4 connected over USB during the first bench checks, running firmware 2.24.0." aria-label="Enlarge image: RaceCapture dashboard during bench checks">
+                <img src="../../images/baja-project/racecapture-dashboard.webp" alt="" width="1274" height="756" loading="lazy" decoding="async">
+              </a>
+              <figcaption class="project-image-caption">The RaceCapture/Pro MK4 connected over USB during the first bench checks, running firmware 2.24.0.</figcaption>
+            </figure>
+            <figure class="project-image-card">
+              <a class="project-image-button" href="../../images/baja-project/racecapture-unboxed.webp" data-preview-src="../../images/baja-project/racecapture-unboxed.webp" data-preview-alt="The RaceCapture/Pro MK4 data logger in its shipping box with its GPS antenna and cables" data-preview-caption="The data logger as it arrived, with its GPS antenna and cables. Photo: Miles." aria-label="Enlarge image: the data logger as it arrived">
+                <img src="../../images/baja-project/racecapture-unboxed.webp" alt="" width="1000" height="1280" loading="lazy" decoding="async">
+              </a>
+              <figcaption class="project-image-caption">The data logger as it arrived, with its GPS antenna and cables. Photo: Miles.</figcaption>
+            </figure>
+          </div>
+        </article>
+      </section>
+
+      <section id="team-systems">
+        <h2>Team systems</h2>
+        <article class="entry">
+          <p>I built and maintain the electrical team's work plan, a shared spreadsheet that tracks weekly assignments and status. I also built and maintain the team's Canvas workspace for onboarding, subteam organization, and manufacturing training, where members pass six qualifications before using shop equipment, and the team website, srjcsaeclub.org.</p>
+          <div class="project-images-grid">
+            <figure class="project-image-card">
+              <a class="project-image-button" href="../../images/baja-website-homepage.webp" data-preview-src="../../images/baja-website-homepage.webp" data-preview-alt="Homepage of the SRJC Baja SAE website showing the Baja SAE hero, off-road car, and site navigation" data-preview-caption="Homepage of srjcsaeclub.org, the SRJC Baja SAE website I built and maintain." aria-label="Enlarge image: homepage of the SRJC Baja SAE website">
+                <img src="../../images/baja-website-homepage.webp" alt="" width="1872" height="1017" loading="lazy" decoding="async">
+              </a>
+              <figcaption class="project-image-caption">Homepage of srjcsaeclub.org, the SRJC Baja SAE website I built and maintain.</figcaption>
+            </figure>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <p class="colophon">Designed and maintained by Dante Martin</p>
+    </footer>
+  </div>
+
+  <dialog id="image-preview-dialog" class="image-preview-dialog" aria-label="Image preview">
+    <div class="image-preview-content">
+      <button id="image-preview-close" class="image-preview-close" type="button" aria-label="Close image preview">&times;</button>
+      <img id="image-preview-image" class="image-preview-image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="">
+      <p id="image-preview-caption" class="image-preview-caption"></p>
+    </div>
+  </dialog>
+
+  <script>
+  (function () {
+    const themeToggleButton = document.getElementById("theme-toggle");
+
+    function getSavedTheme() {
+      try {
+        return localStorage.getItem("theme");
+      } catch (storageError) {
+        return null;
+      }
+    }
+
+    function saveTheme(theme) {
+      try {
+        localStorage.setItem("theme", theme);
+      } catch (storageError) {
+        // Keep the current-session override even when persistence is blocked.
+      }
+    }
+
+    function determineEffectiveTheme() {
+      const explicitlySavedTheme = document.documentElement.getAttribute("data-theme");
+      if (explicitlySavedTheme) return explicitlySavedTheme;
+      return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+
+    function updateThemeToggleLabel() {
+      const currentThemeIsDark = determineEffectiveTheme() === "dark";
+      themeToggleButton.textContent = currentThemeIsDark ? "\u263C" : "\u263E";
+      const nextTheme = currentThemeIsDark ? "light" : "dark";
+      themeToggleButton.setAttribute("aria-label", "Switch to " + nextTheme + " theme");
+      themeToggleButton.title = "Switch to " + nextTheme + " theme";
+    }
+
+    themeToggleButton.hidden = false;
+    updateThemeToggleLabel();
+    themeToggleButton.addEventListener("click", function () {
+      const nextTheme = determineEffectiveTheme() === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", nextTheme);
+      saveTheme(nextTheme);
+      updateThemeToggleLabel();
+    });
+    if (window.matchMedia) {
+      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () {
+        if (!getSavedTheme()) updateThemeToggleLabel();
+      });
+    }
+
+    const navigationLinks = Array.from(document.querySelectorAll(".nav a[href^='#']"));
+    const sectionElements = navigationLinks.map(function (navigationLink) {
+      return document.querySelector(navigationLink.getAttribute("href"));
+    }).filter(Boolean);
+
+    function updateScrollState() {
+      if (!sectionElements.length) return;
+      const scrollPosition = window.scrollY;
+      const maximumScrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const activationPosition = scrollPosition + Math.min(window.innerHeight * 0.3, 180);
+      let activeSectionId = sectionElements[0].id;
+      sectionElements.forEach(function (sectionElement) {
+        const sectionTop = sectionElement.getBoundingClientRect().top + scrollPosition;
+        if (sectionTop <= activationPosition) activeSectionId = sectionElement.id;
+      });
+      if (maximumScrollableHeight > 0 && scrollPosition >= maximumScrollableHeight - 2) {
+        activeSectionId = sectionElements[sectionElements.length - 1].id;
+      }
+      navigationLinks.forEach(function (navigationLink) {
+        const isActiveSection = navigationLink.getAttribute("href") === "#" + activeSectionId;
+        navigationLink.classList.toggle("active", isActiveSection);
+        if (isActiveSection) navigationLink.setAttribute("aria-current", "location");
+        else navigationLink.removeAttribute("aria-current");
+      });
+    }
+    window.addEventListener("scroll", updateScrollState, { passive: true });
+    window.addEventListener("resize", updateScrollState);
+    updateScrollState();
+
+    const imagePreviewDialog = document.getElementById("image-preview-dialog");
+    const imagePreviewImage = document.getElementById("image-preview-image");
+    const imagePreviewCaption = document.getElementById("image-preview-caption");
+    const imagePreviewCloseButton = document.getElementById("image-preview-close");
+    let imagePreviewTrigger = null;
+
+    if (typeof imagePreviewDialog.showModal === "function") {
+      document.querySelectorAll(".project-image-button[data-preview-src]").forEach(function (imageLink) {
+        imageLink.setAttribute("aria-haspopup", "dialog");
+        imageLink.setAttribute("aria-controls", "image-preview-dialog");
+        imageLink.addEventListener("click", function (event) {
+          if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+          event.preventDefault();
+          imagePreviewTrigger = imageLink;
+          imagePreviewImage.src = imageLink.dataset.previewSrc;
+          imagePreviewImage.alt = imageLink.dataset.previewAlt || "";
+          imagePreviewCaption.textContent = imageLink.dataset.previewCaption || imageLink.dataset.previewAlt || "";
+          document.body.classList.add("image-preview-open");
+          imagePreviewDialog.showModal();
+          imagePreviewCloseButton.focus();
+        });
+      });
+    }
+
+    function closeImagePreview() {
+      if (imagePreviewDialog.open) imagePreviewDialog.close();
+    }
+    imagePreviewCloseButton.addEventListener("click", closeImagePreview);
+    imagePreviewDialog.addEventListener("keydown", function (event) {
+      if (event.key === "Tab") {
+        event.preventDefault();
+        imagePreviewCloseButton.focus();
+      }
+    });
+    imagePreviewDialog.addEventListener("click", function (event) {
+      if (event.target === imagePreviewDialog) closeImagePreview();
+    });
+    imagePreviewDialog.addEventListener("close", function () {
+      document.body.classList.remove("image-preview-open");
+      imagePreviewImage.src = "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
+      imagePreviewImage.alt = "";
+      imagePreviewCaption.textContent = "";
+      if (imagePreviewTrigger) {
+        imagePreviewTrigger.focus();
+        imagePreviewTrigger = null;
+      }
+    });
+  })();
+  </script>
+</body>
+</html>
