@@ -12,10 +12,13 @@ portfolio site.
 
 ## Summary
 
-- All public content lives in semantic `index.html`. Don't add a client-side
-  content renderer or a second content source.
-- To add something, copy the matching HTML block, place it in the right
-  section, and edit the visible text and links. Newest entries stay first.
+- The homepage content lives in semantic `index.html`; static project detail
+  pages live in `projects/<slug>/index.html`. Don't add a client-side content
+  renderer or external content data source.
+- Add homepage content in `index.html`. For a featured project with more
+  evidence than the homepage entry can hold, edit its project page. Follow
+  STANDARDS.md to choose the page that owns the content; newest homepage
+  entries stay first.
 - Styling is in `styles.css`; re-skin through the `:root` variables at the top.
 - No build step, frameworks, CDNs, web fonts, or extra trackers. JavaScript is
   progressive enhancement only.
@@ -30,6 +33,8 @@ STANDARDS.md.
 
 ## Before you finish
 
-Open `index.html` in a browser and confirm it renders in light and dark mode
-with no blank labels and no console errors. Commit with Conventional Commits
-(`feat:`, `fix:`, `docs:`, `style:`, `refactor:`, `chore:`) and push.
+Open the changed page in a browser and confirm it renders in light and dark
+mode with no blank labels and no console errors. Commit with Conventional
+Commits (`feat:`, `fix:`, `docs:`, `style:`, `refactor:`, `chore:`). A push to
+`main` deploys the live site, so get Dante's approval before pushing unless
+that specific deployment is already authorized.
