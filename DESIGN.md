@@ -120,6 +120,9 @@ when the primary pointer can hover, so a touchscreen keeps no hover treatment.
 - Baja's Back to portfolio link returns to `#baja`; preserve normal browser Back.
 - Use Back to portfolio for the same return action, and name actions directly.
   Keep engineering evidence as the subject, with no debug chrome.
+- Respect OS settings such as reduced motion; no hard-coded double-click or long-press timing.
+- The site has no glass: pages stay solid. Glass or blur is only for a future floating layer,
+  such as a menu or popup.
 
 ## Components
 
