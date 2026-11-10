@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Baja SAE | Dante Martin</title>
   <meta name="description" content="Dante Martin's work on electrical integration, data acquisition, testing, and team systems for SRJC Baja SAE.">
-  <link rel="stylesheet" href="../../styles.css?v=1.15">
+  <link rel="stylesheet" href="../../styles.css?v=20261110">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23227c4b%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-weight=%22bold%22 font-size=%2260%22 fill=%22white%22>D</text></svg>">
 
   <link rel="canonical" href="https://dante-martin.com/projects/baja/">
@@ -73,7 +73,7 @@
         <p class="nav-label">Project pages</p>
         <a href="./" class="active" aria-current="page">Baja SAE</a>
       </nav>
-      <div class="project-back"><a href="../../index.html">Back to portfolio</a></div>
+      <div class="project-back"><a href="../../index.html#baja">Back to portfolio</a></div>
     </aside>
 
     <main class="content project-content" id="content" tabindex="-1">
@@ -172,7 +172,8 @@
 
     function getSavedTheme() {
       try {
-        return localStorage.getItem("theme");
+        const savedTheme = localStorage.getItem("theme");
+        return savedTheme === "light" || savedTheme === "dark" ? savedTheme : null;
       } catch (storageError) {
         return null;
       }
@@ -192,6 +193,16 @@
       return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
     }
 
+    let themeFadeTimeout;
+    function beginThemeFade() {
+      document.documentElement.classList.add("theme-changing");
+      clearTimeout(themeFadeTimeout);
+      const duration = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--motion-theme")) * 1000;
+      themeFadeTimeout = setTimeout(function () {
+        document.documentElement.classList.remove("theme-changing");
+      }, duration);
+    }
+
     function updateThemeToggleLabel() {
       const currentThemeIsDark = determineEffectiveTheme() === "dark";
       themeToggleButton.textContent = currentThemeIsDark ? "\u263C" : "\u263E";
@@ -200,17 +211,27 @@
       themeToggleButton.title = "Switch to " + nextTheme + " theme";
     }
 
+    // Pin the effective palette before media-query CSS can change it, so an OS
+    // change starts the same coordinated fade as a manual change.
+    let followsSystemTheme = !getSavedTheme();
+    document.documentElement.setAttribute("data-theme", determineEffectiveTheme());
     themeToggleButton.hidden = false;
     updateThemeToggleLabel();
     themeToggleButton.addEventListener("click", function () {
       const nextTheme = determineEffectiveTheme() === "dark" ? "light" : "dark";
+      followsSystemTheme = false;
+      beginThemeFade();
       document.documentElement.setAttribute("data-theme", nextTheme);
       saveTheme(nextTheme);
       updateThemeToggleLabel();
     });
     if (window.matchMedia) {
-      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () {
-        if (!getSavedTheme()) updateThemeToggleLabel();
+      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function (event) {
+        if (followsSystemTheme) {
+          beginThemeFade();
+          document.documentElement.setAttribute("data-theme", event.matches ? "dark" : "light");
+          updateThemeToggleLabel();
+        }
       });
     }
 
@@ -248,18 +269,31 @@
     const imagePreviewCaption = document.getElementById("image-preview-caption");
     const imagePreviewCloseButton = document.getElementById("image-preview-close");
     let imagePreviewTrigger = null;
+    let imagePreviewRequest = 0;
 
     if (typeof imagePreviewDialog.showModal === "function") {
       document.querySelectorAll(".project-image-button[data-preview-src]").forEach(function (imageLink) {
         imageLink.setAttribute("aria-haspopup", "dialog");
         imageLink.setAttribute("aria-controls", "image-preview-dialog");
-        imageLink.addEventListener("click", function (event) {
+        imageLink.addEventListener("click", async function (event) {
           if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
           event.preventDefault();
-          imagePreviewTrigger = imageLink;
+          const request = ++imagePreviewRequest;
+          imageLink.setAttribute("aria-busy", "true");
           imagePreviewImage.src = imageLink.dataset.previewSrc;
           imagePreviewImage.alt = imageLink.dataset.previewAlt || "";
           imagePreviewCaption.textContent = imageLink.dataset.previewCaption || imageLink.dataset.previewAlt || "";
+          try {
+            await imagePreviewImage.decode();
+          } catch (imageError) {
+            // Preserve the original image-link fallback if preview decoding fails.
+            if (request === imagePreviewRequest) window.location.assign(imageLink.href);
+            return;
+          } finally {
+            imageLink.removeAttribute("aria-busy");
+          }
+          if (request !== imagePreviewRequest) return;
+          imagePreviewTrigger = imageLink;
           document.body.classList.add("image-preview-open");
           imagePreviewDialog.showModal();
           imagePreviewCloseButton.focus();
@@ -282,9 +316,6 @@
     });
     imagePreviewDialog.addEventListener("close", function () {
       document.body.classList.remove("image-preview-open");
-      imagePreviewImage.src = "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
-      imagePreviewImage.alt = "";
-      imagePreviewCaption.textContent = "";
       if (imagePreviewTrigger) {
         imagePreviewTrigger.focus();
         imagePreviewTrigger = null;

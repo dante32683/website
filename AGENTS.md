@@ -9,6 +9,7 @@ portfolio site.
   the writing rules.
 - **[DESIGN.md](DESIGN.md)**, for any visual change: every colour, size,
   spacing, button, and link style comes from it.
+- Follow [DESIGN.md's Cohesion rules](DESIGN.md#cohesion-rules) for interaction changes.
 
 ## Summary
 
@@ -33,7 +34,7 @@ STANDARDS.md.
 
 ## Before you finish
 
-Open the changed page in a browser and confirm it renders in light and dark
+Run `python checks.py`, then open the changed page in a browser and confirm it renders in light and dark
 mode with no blank labels and no console errors. Commit with Conventional
 Commits (`feat:`, `fix:`, `docs:`, `style:`, `refactor:`, `chore:`). A push to
 `main` deploys the live site, so get Dante's approval before pushing unless

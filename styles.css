@@ -59,6 +59,8 @@
   --headshot: 6rem;        /* sidebar headshot diameter */
   --line: 1px;             /* every border and rule */
   --motion: 0.15s;         /* hover and focus transitions */
+  --dialog-rise: 0.5rem;  /* short preview entrance/exit */
+  --opacity-pressed: 0.7; /* immediate press feedback */
   --motion-theme: 0.3s;    /* light/dark colour fade */
   --space-rail: 3.5rem;    /* top padding of sidebar and content */
   --space-section: 3rem;   /* between sections (above and below the rule) */
@@ -86,7 +88,7 @@
 
 /* --- RESET ------------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scrollbar-gutter: stable; }
 
 body {
   font-family: var(--sans);
@@ -108,6 +110,25 @@ a { color: var(--accent); text-decoration: none; }
   margin-right: 0.3125rem;
   vertical-align: -0.125rem;
 }
+
+/* Same-document theme changes fade all themed surfaces and text together. */
+@media screen and (prefers-reduced-motion: no-preference) {
+  .theme-changing, .theme-changing *, .theme-changing *::before, .theme-changing *::after {
+    transition: color var(--motion-theme) ease, background-color var(--motion-theme) ease,
+      border-color var(--motion-theme) ease, text-decoration-color var(--motion-theme) ease !important;
+  }
+  .theme-changing .image-preview-dialog {
+    transition: color var(--motion-theme) ease, background-color var(--motion-theme) ease,
+      border-color var(--motion-theme) ease, opacity var(--motion) ease, transform var(--motion) ease,
+      display var(--motion) allow-discrete, overlay var(--motion) allow-discrete !important;
+  }
+}
+
+/* Same-origin navigation keeps the page continuous where supported. */
+@view-transition { navigation: auto; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: var(--motion); }
+
+a:active, button:active { opacity: var(--opacity-pressed); }
 
 /* Accessibility focus ring */
 a:focus-visible, button:focus-visible {
@@ -174,7 +195,9 @@ a:focus-visible, button:focus-visible {
   margin-left: -0.75rem; transition: color var(--motion), border-color var(--motion), background-color var(--motion);
   border-radius: var(--radius-control);
 }
+@media (hover: hover) {
 .nav a:hover { color: var(--accent); background-color: transparent; }
+}
 .nav a.active { color: var(--accent); border-left-color: var(--accent); background-color: var(--accent-tint); font-weight: 600; }
 
 /* Contact */
@@ -201,12 +224,14 @@ a:focus-visible, button:focus-visible {
   background-color: var(--accent);
   transition: width var(--motion) ease, left var(--motion) ease;
 }
+@media (hover: hover) {
 .contact a:hover::after,
 .entry .more a:not(.button):hover::after,
 .project-header .more a:hover::after,
 .project-back a:hover::after {
   width: 100%;
   left: 0;
+}
 }
 
 /* Theme toggle stays near identity/contact in source order, but is visually
@@ -230,11 +255,13 @@ a:focus-visible, button:focus-visible {
   color: var(--muted);
   transition: color var(--motion), border-color var(--motion);
 }
+@media (hover: hover) {
 .theme-toggle:hover,
 .image-preview-close:hover,
 .button:hover {
   color: var(--accent);
   border-color: var(--accent);
+}
 }
 .theme-toggle[hidden] { display: none; }
 
@@ -348,9 +375,11 @@ h3 .subtitle::before,
   text-decoration-thickness: 1.5px;
   transition: color var(--motion), text-decoration-color var(--motion);
 }
+@media (hover: hover) {
 .honor-link:hover {
   color: var(--accent);
   text-decoration-color: var(--accent);
+}
 }
 
 .capability-group { margin-bottom: var(--space-group); }
@@ -401,7 +430,9 @@ h3 .subtitle::before,
   appearance: none;
   transition: border-color var(--motion) ease;
 }
+@media (hover: hover) {
 .project-image-button:hover { border-color: var(--accent); }
+}
 .project-image-button img {
   width: 100%;
   height: auto;
@@ -424,8 +455,24 @@ h3 .subtitle::before,
   background: var(--bg);
   color: var(--ink);
   box-shadow: var(--shadow-dialog);
+  opacity: 0;
+  transform: translateY(var(--dialog-rise));
+  transition: opacity var(--motion) ease, transform var(--motion) ease,
+    display var(--motion) allow-discrete, overlay var(--motion) allow-discrete;
 }
-.image-preview-dialog::backdrop { background: var(--backdrop); }
+.image-preview-dialog[open] { opacity: 1; transform: translateY(0); }
+@starting-style {
+  .image-preview-dialog[open] { opacity: 0; transform: translateY(var(--dialog-rise)); }
+}
+.image-preview-dialog::backdrop {
+  background: var(--backdrop);
+  opacity: 0;
+  transition: opacity var(--motion) ease, display var(--motion) allow-discrete,
+    overlay var(--motion) allow-discrete;
+}
+.image-preview-dialog[open]::backdrop { opacity: 1; }
+@starting-style { .image-preview-dialog[open]::backdrop { opacity: 0; } }
+.project-image-button[aria-busy="true"] { cursor: progress; }
 .image-preview-content {
   position: relative;
   padding: 3.5rem 1rem 1rem;
@@ -499,6 +546,7 @@ footer .colophon { margin: 0; line-height: var(--leading-meta); }
 /* --- SMALL SCREENS: collapse to one column, nav goes horizontal -------- */
 @media (max-width: 50rem) {
   .layout { grid-template-columns: 1fr; gap: 0; padding: 0 1.5rem; }
+  .theme-toggle { position: absolute; }
   .sidebar { position: static; padding: calc(var(--space-section) + var(--space-block)) 0 0; margin: 0; max-height: none; overflow: visible; }
   .nav { flex-direction: row; flex-wrap: wrap; gap: 0.25rem 1.25rem; margin-top: 1.5rem; }
   .nav a { border-left: none; padding: 0.3rem 0.6rem; margin-left: 0; border-radius: var(--radius-control); }
@@ -549,11 +597,13 @@ a .arrow {
   display: inline-block;
   transition: transform var(--motion) ease;
 }
+@media (hover: hover) {
 a:hover .arrow {
   transform: translate(2px, -2px);
 }
 a:hover .arrow-forward {
   transform: translateX(2px);
+}
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -569,6 +619,10 @@ a:hover .arrow-forward {
 
 /* --- PRINT STYLES ------------------------------------------------------ */
 @media print {
+  :root, :root *, :root *::before, :root *::after, .image-preview-dialog::backdrop {
+    transition: none !important;
+    animation: none !important;
+  }
   :root,
   :root[data-theme="light"],
   :root[data-theme="dark"] {
@@ -600,7 +654,9 @@ a:hover .arrow-forward {
   letter-spacing: -0.02em;
   line-height: var(--leading-name);
 }
+@media (hover: hover) {
 .site-name:hover { color: var(--accent); }
+}
 
 .project-back {
   margin-top: var(--space-block);

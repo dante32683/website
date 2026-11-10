@@ -97,6 +97,29 @@ its rule. Copy the component; don't invent new gaps.
 | `--motion-theme` | 0.3s | Light/dark colour fade |
 
 `prefers-reduced-motion` disables all transitions and the arrow nudge.
+The preview uses `--dialog-rise` (0.5rem), and every link and button uses
+`--opacity-pressed` (0.7) immediately while pressed. Hover styles apply only
+when the primary pointer can hover, so a touchscreen keeps no hover treatment.
+
+## Cohesion rules
+
+- The HTML is readable before enhancement; every page starts with its saved
+  theme, headshot, contacts, and native `theme-toggle` control.
+- Decode a preview image before opening `image-preview-dialog`, so its first
+  frame has its final size. Keep the direct image link as the failure fallback.
+- Reserve the document scrollbar gutter while the preview locks scrolling.
+- The theme control scrolls with the identity block below 50rem and never
+  covers reading content. The sidebar and content scroll when they cannot fit.
+- Preview entrances and exits use `--motion` and `--dialog-rise`. Same-origin
+  navigation crossfades with `--motion` where view transitions are supported.
+- Theme text, borders, and surfaces fade together with `--motion-theme`,
+  including automatic OS changes. Reduced motion disables these animations.
+- Links and buttons respond immediately while pressed; hover feedback applies
+  only to a pointer that supports it. Preserve native keyboard focus and controls.
+- Keep the preview image through its exit, and return focus to its trigger.
+- Baja's Back to portfolio link returns to `#baja`; preserve normal browser Back.
+- Use Back to portfolio for the same return action, and name actions directly.
+  Keep engineering evidence as the subject, with no debug chrome.
 
 ## Components
 
@@ -136,6 +159,8 @@ look in text form.
 On mobile, the sidebar's top padding is `--space-section` plus
 `--space-block` (4.5rem). This places identity text below the theme control,
 including when the visitor enlarges the browser's preferred font size.
+Below 50rem the control is positioned in the page and scrolls away with the
+identity block; it does not float above the reading content.
 
 ### Nav
 

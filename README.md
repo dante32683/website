@@ -26,7 +26,7 @@ Cloudflare Pages deploys `main` to `dante-martin.com`.
 See **[STANDARDS.md](STANDARDS.md)** for structure and writing style.
 
 1. Edit the relevant semantic content in `index.html`.
-2. Open `index.html` in a web browser to test locally.
+2. Run `python checks.py`, then open `index.html` in a web browser to test locally.
 3. Confirm the page renders correctly in both **light and dark modes** (using the theme toggle).
 4. Run standard print-to-PDF previews to ensure layout prints cleanly.
 5. Commit using **Conventional Commits** (`feat:`, `fix:`, `docs:`, `style:`, etc.). A push to `main` deploys the live site, so get Dante's approval before pushing unless that specific deployment is already authorized.

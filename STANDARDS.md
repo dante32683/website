@@ -127,7 +127,9 @@ make it concrete.
 - Keep homepage copy concise, but there is no hard word cap. Featured project summaries may run roughly 60-100 words when that space is needed to explain the problem, personal contribution, and result/current state. Compact entries should stay shorter.
 - Homepage featured projects use one meaningful evidence image. That image may open the shared native `<dialog>` preview for larger inspection. Compact Other Work entries normally stay text-first without image galleries.
 - External web links (`http://` / `https://`) open in a new tab with `target="_blank"` and `rel="noopener noreferrer"` so visitors can inspect evidence without losing the portfolio. The visible `↗` marker means an external/new-tab destination. In-page anchors and `mailto:` links stay in the current context.
-- Test before you push: confirm raw `index.html` contains the complete portfolio,
+- Test before you push: run `python checks.py` (Python 3 and Node on PATH) for
+  identity controls, direct action copy, local links, anchors, and inline script syntax.
+  Confirm raw `index.html` contains the complete portfolio,
   then open it in a browser and verify light/dark mode, keyboard navigation, image
   preview behavior, narrow-screen reflow, and no console errors.
 
